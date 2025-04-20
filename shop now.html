@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Cart - Premium Online Shopping</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            secondary: {
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            dark: {
+              800: '#1e293b',
+              900: '#0f172a',
+            }
+          },
+          animation: {
+            fadeIn: 'fadeIn 0.5s ease-in forwards',
+            bounce: 'bounce 2s infinite',
+            pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: 0 },
+              '100%': { opacity: 1 }
+            },
+            bounce: {
+              '0%, 100%': { transform: 'translateY(-5%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+              '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer>
+    // Enhanced countdown with localStorage persistence
+    function startCountdown(durationInMinutes) {
+      const timerElement = document.getElementById("offer-timer");
+      const timerMobileElement = document.getElementById("offer-timer-mobile");
+      const offerKey = 'summer-sale-end';
+      
+      // Check if we have a saved end time
+      let endTime = localStorage.getItem(offerKey);
+      
+      if (!endTime) {
+        // Set end time 10 minutes from now
+        endTime = new Date().getTime() + durationInMinutes * 60 * 1000;
+        localStorage.setItem(offerKey, endTime);
+      } else {
+        endTime = parseInt(endTime);
+      }
+
+      const updateTimer = () => {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+        
+        if (distance < 0) {
+          timerElement.textContent = "00:00";
+          timerMobileElement.textContent = "00:00";
+          timerElement.classList.add('animate-pulse');
+          timerMobileElement.classList.add('animate-pulse');
+          return;
+        }
+        
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        timerMobileElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      };
+
+      updateTimer();
+      const timerInterval = setInterval(updateTimer, 1000);
+    }
+    
+    // Mobile menu toggle
+    function setupMobileMenu() {
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+    
+    // Categories dropdown toggle
+    function setupCategoriesDropdown() {
+      const dropdownButton = document.getElementById('categories-dropdown-button');
+      const dropdownMenu = document.getElementById('categories-dropdown');
+      
+      dropdownButton.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden');
+      });
+      
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.add('hidden');
+        }
+      });
+    }
+    
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      startCountdown(10); // 10 minute countdown
+      setupMobileMenu();
+      setupCategoriesDropdown();
+      
+      // Add animation to hero section
+      const heroText = document.getElementById('hero-text');
+      heroText.classList.add('animate-fadeIn');
+    });
+  </script>
+</head>
+
+<body class="font-sans antialiased bg-white text-gray-800">
+  <!-- Top Banner with improved styling -->
+  <div class="bg-gradient-to-r from-primary-600 to-secondary-500 text-white p-3 flex flex-col sm:flex-row justify-between items-center">
+    <div class="flex items-center space-x-2 mb-2 sm:mb-0">
+      <i class="fas fa-sun text-yellow-300 text-xl animate-spin"></i>
+      <div class="text-center sm:text-left">
+        <span class="text-lg font-bold tracking-wide">SUMMER SALE - 50% OFF!</span>
+        <span class="ml-2 hidden sm:inline">| Ends in <span id="offer-timer" class="font-bold bg-white text-primary-600 px-2 py-1 rounded">00:00</span></span>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <span class="sm:hidden mr-2">Ends in <span id="offer-timer-mobile" class="font-bold bg-white text-primary-600 px-2 py-1 rounded">00:00</span></span>
+      <a href="#" class="bg-white text-primary-600 px-4 py-1 rounded-full hover:bg-gray-100 transition flex items-center font-medium">
+        <span>Shop Now</span>
+        <i class="fas fa-arrow-right ml-2 text-sm"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Enhanced Header with mobile responsiveness -->
+  <header class="sticky top-0 z-50 bg-white shadow-md border-b">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-6">
+          <a href="#" class="flex items-center">
+            
+            <span class="ml-2 text-xl font-bold text-primary-600 hidden sm:block">UniversalCart</span>
+          </a>
+          
+          <div class="relative hidden lg:block">
+            <button id="categories-dropdown-button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition font-medium">
+              <i class="fas fa-bars"></i>
+              <span>Categories</span>
+              <i class="fas fa-chevron-down text-xs ml-1"></i>
+            </button>
+            <div id="categories-dropdown" class="hidden absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl z-50 border border-gray-200">
+              <ul class="py-2">
+                <li><a href="womens-fashion.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Women's Fashion</a></li>
+                <li><a href="mens-fashion.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Men's Fashion</a></li>
+                <li><a href="electronics.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Electronics</a></li>
+                <li><a href="home-lifestyle.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Home & Lifestyle</a></li>
+                <li><a href="medicine.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Medicine</a></li>
+                <li><a href="sport-outdoor.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Sport & Outdoor</a></li>
+                <li><a href="baby-toys.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Baby & Toys</a></li>
+                <li><a href="groceries-pets.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Groceries & Pets</a></li>
+                <li><a href="health-beauty.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Health & Beauty</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Search Bar - Center aligned -->
+        <div class="flex-1 max-w-xl mx-4 hidden md:block">
+          <div class="relative">
+            <input type="text" placeholder="Search for products..." 
+                   class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent">
+            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-1 rounded-full hover:bg-primary-700 transition">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="space-x-4 hidden md:flex items-center">
+            <a href="index.html" class="hover:text-primary-600 transition font-medium">Home</a>
+          <a href="#" class="hover:text-primary-600 transition font-medium">Account</a>
+          <a href="#" class="hover:text-primary-600 transition font-medium">Wishlist</a>
+          <a href="signup1.html" class="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition font-medium">Sign Up</a>
+        </nav>
+        
+        <!-- Cart and Mobile Menu Button -->
+        <div class="flex items-center space-x-4">
+          <div class="relative hidden md:block">
+            <a href="#" class="text-gray-600 hover:text-primary-600 transition">
+              <i class="fas fa-heart text-xl"></i>
+              <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"></span>
+            </a>
+          </div>
+          
+          <div class="relative">
+            <a href="CART.html" class="text-gray-600 hover:text-primary-600 transition">
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span class="absolute -top-2 -right-2 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"></span>
+            </a>
+          </div>
+          
+          <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-primary-600">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Search - appears below on mobile -->
+      <div class="mt-3 md:hidden">
+        <div class="relative">
+          <input type="text" placeholder="Search for products..." 
+                 class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent">
+          <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-1 rounded-full hover:bg-primary-700 transition">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu with Categories -->
+      <div id="mobile-menu" class="hidden md:hidden mt-3 pb-3 border-t pt-3">
+        <div class="flex flex-col space-y-3">
+          <div class="border-b pb-2">
+            <h3 class="font-bold text-gray-700 mb-2">Categories</h3>
+            <ul class="grid grid-cols-2 gap-2">
+              <li><a href="womens-fashion.html" class="text-blue-700 hover:underline block py-1">Women's Fashion</a></li>
+              <li><a href="mens-fashion.html" class="text-blue-700 hover:underline block py-1">Men's Fashion</a></li>
+              <li><a href="electronics.html" class="text-blue-700 hover:underline block py-1">Electronics</a></li>
+              <li><a href="home-lifestyle.html" class="text-blue-700 hover:underline block py-1">Home & Lifestyle</a></li>
+              <li><a href="medicine.html" class="text-blue-700 hover:underline block py-1">Medicine</a></li>
+              <li><a href="sport-outdoor.html" class="text-blue-700 hover:underline block py-1">Sport & Outdoor</a></li>
+              <li><a href="baby-toys.html" class="text-blue-700 hover:underline block py-1">Baby & Toys</a></li>
+              <li><a href="groceries-pets.html" class="text-blue-700 hover:underline block py-1">Groceries & Pets</a></li>
+              <li><a href="health-beauty.html" class="text-blue-700 hover:underline block py-1">Health & Beauty</a></li>
+            </ul>
+          </div>
+          <a href="#" class="hover:text-primary-600 transition font-medium">Account</a>
+          <a href="#" class="hover:text-primary-600 transition font-medium">Wishlist</a>
+          <a href="CART.html" class="hover:text-primary-600 transition font-medium">Cart</a>
+          <div class="pt-2">
+            <a href="#" class="block w-full text-center bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition font-medium">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 py-8">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Product Image Section -->
+      <div class="bg-white p-6 rounded-lg shadow-md relative">
+        <img id="main-image" src="images/PS5 LED Controller Mod Custom Weißer Wireless Controller mit weißen RGB-Tasten mit Hintergrundbeleuchtung - Clicky Action+Directional+Trigger Buttons.jpeg" alt="PS5 LED Controller" 
+             class="w-full h-auto rounded-lg transition-opacity duration-300">
+        <!-- Size Badge -->
+        <span id="size-badge" class="absolute top-4 right-4 bg-gray-800 text-white px-3 py-1 rounded-full text-sm font-medium">
+          M
+        </span>
+      </div>
+  
+      <!-- Product Details Section -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">PS5 LED Controller</h1>
+        <div class="flex items-center mb-2">
+          <div class="flex items-center">
+            <span class="text-3xl font-bold text-gray-800">$192.00</span>
+            <span class="text-red-500 ml-3 text-sm font-medium">-50% OFF</span>
+          </div>
+          <span class="ml-4 text-gray-400 line-through">$384.00</span>
+        </div>
+        
+        <div class="mb-6">
+          <div class="flex items-center mb-2">
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+            <span class="ml-2 text-sm text-gray-500">(128 reviews)</span>
+          </div>
+        </div>
+  
+        <p class="text-gray-600 mb-6 leading-relaxed">Professional-grade PlayStation 5 controller skin featuring high-quality vinyl with air channel adhesive for bubble-free installation and mess-free removal. Pressure-sensitive controls with customizable RGB lighting.</p>
+  
+        <!-- Color Selection -->
+        <div class="mb-6">
+          <label class="block text-gray-700 font-medium mb-3">Select Color:</label>
+          <div class="flex space-x-3">
+            <button data-color="red" data-image="images/red-controller.jpg" 
+                    class="color-btn w-10 h-10 rounded-full bg-red-500 ring-2 ring-transparent hover:ring-red-300 transition-all duration-200">
+            </button>
+            <button data-color="blue" data-image="images/blue-controller.jpg" 
+                    class="color-btn w-10 h-10 rounded-full bg-blue-500 ring-2 ring-transparent hover:ring-blue-300 transition-all duration-200">
+            </button>
+            <button data-color="green" data-image="images/green-controller.jpg" 
+                    class="color-btn w-10 h-10 rounded-full bg-green-500 ring-2 ring-transparent hover:ring-green-300 transition-all duration-200">
+            </button>
+          </div>
+        </div>
+  
+        <!-- Size Selection -->
+        <div class="mb-8">
+          <label class="block text-gray-700 font-medium mb-3">Select Size:</label>
+          <div class="flex space-x-3">
+            <button data-size="XS" class="size-btn px-5 py-2 bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition-colors">XS</button>
+            <button data-size="S" class="size-btn px-5 py-2 bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition-colors">S</button>
+            <button data-size="M" class="size-btn px-5 py-2 bg-gray-800 text-white rounded-md">M</button>
+            <button data-size="L" class="size-btn px-5 py-2 bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition-colors">L</button>
+            <button data-size="XL" class="size-btn px-5 py-2 bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition-colors">XL</button>
+          </div>
+        </div>
+  
+        <!-- Action Buttons -->
+        <div class="flex space-x-4">
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md flex-1 transition-all duration-200 transform hover:scale-105">
+            Buy Now
+          </button>
+          
+        </div>
+  
+        <!-- Product Highlights -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <h3 classtext-gray-700 font-medium mb-3">Product Features:</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center text-gray-600">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+              </svg>
+              Custom RGB lighting controls
+            </li>
+            <li class="flex items-center text-gray-600">
+              <!-- Same check icon -->
+              Pressure-sensitive triggers
+            </li>
+            <li class="flex items-center text-gray-600">
+              <!-- Same check icon -->
+              Non-slip textured grip
+            </li>
+          </ul>
+        </div>
+        <button class="add-to-cart block mx-auto mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  data-product-id="gamepad01"
+                  data-product-name="HAVIT HV-G92 Gamepad"
+                  data-product-price="120.00">
+            Add to Cart
+          </button>
+      </div>
+    </section>
+  </main>
+  
+  <script>
+    // Color Selection
+    document.querySelectorAll('.color-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Update main image
+        const mainImage = document.getElementById('main-image');
+        mainImage.src = this.dataset.image;
+        
+        // Update active state
+        document.querySelectorAll('.color-btn').forEach(b => 
+          b.classList.remove('ring-blue-500', 'ring-4'));
+        this.classList.add('ring-blue-500', 'ring-4');
+      });
+    });
+  
+    // Size Selection
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Update size badge
+        document.getElementById('size-badge').textContent = this.dataset.size;
+        
+        // Update active state
+        document.querySelectorAll('.size-btn').forEach(b => 
+          b.classList.remove('bg-gray-800', 'text-white'));
+        this.classList.add('bg-gray-800', 'text-white');
+      });
+    });
+  </script>
+        <div class="mt-4">
+          <p class="text-gray-600">Free Delivery - Enter your postal code for Delivery Availability</p>
+          <p class="text-gray-600">Return Delivery - Free 30 Days Delivery Returns. <a href="#" class="text-blue-500">Details</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Items -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Related Items</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <img src="images/Fantech GP11 SHOOTER Wired Gaming Controller Gamepad For PC PS3 Xbox.jpeg" alt="Fantech Gamepad SHOOTER" class="w-full h-auto rounded-lg">
+          <h3 class="text-lg font-bold text-gray-800 mt-2">HAVIT HV-G92 Gamepad</h3>
+          <p class="text-gray-600">$120</p>
+          <span class="text-red-500">-40%</span>
+          <button class="add-to-cart block mx-auto mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  data-product-id="gamepad01"
+                  data-product-name="HAVIT HV-G92 Gamepad"
+                  data-product-price="120.00">
+            Add to Cart
+          </button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <img src="images/download.jpeg" alt="AK-900 Wired Keyboard" class="w-full h-auto rounded-lg">
+          <h3 class="text-lg font-bold text-gray-800 mt-2">AK-900 Wired Keyboard</h3>
+          <p class="text-gray-600">$960</p>
+          <span class="text-red-500">-35%</span>
+          <button class="add-to-cart block mx-auto mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  data-product-id="keyboard01"
+                  data-product-name="AK-900 Wired Keyboard"
+                  data-product-price="960.00">
+            Add to Cart
+          </button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <img src="images/4K smart TV from Tonme Digital signage factory.jpeg" alt="IPS LCD Gaming Monitor" class="w-full h-auto rounded-lg">
+          <h3 class="text-lg font-bold text-gray-800 mt-2">IPS LCD Gaming Monitor</h3>
+          <p class="text-gray-600">$370</p>
+          <span class="text-red-500">-30%</span>
+          <button class="add-to-cart block mx-auto mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  data-product-id="monitor01"
+                  data-product-name="IPS LCD Gaming Monitor"
+                  data-product-price="370.00">
+            Add to Cart
+          </button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <img src="images/cpu cooler.jpeg" alt="RGB liquid CPU Cooler" class="w-full h-auto rounded-lg">
+          <h3 class="text-lg font-bold text-gray-800 mt-2">RGB liquid CPU Cooler</h3>
+          <p class="text-gray-600">$160</p>
+          <button class="add-to-cart block mx-auto mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  data-product-id="cooler01"
+                  data-product-name="RGB liquid CPU Cooler"
+                  data-product-price="160.00">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 px-6">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-bold mb-4">Subscribe</h3>
+          <p class="text-gray-400">Get 10% off your first order</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Support</h3>
+          <p class="text-gray-400">111 Bijoy Sarani, Dhaka, DH 1515, Bangladesh.</p>
+          <p class="text-gray-400">universalcart@gmail.com</p>
+          <p class="text-gray-400">+88015-88888-9999</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Account</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">My Account</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Login / Register</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Cart</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Wishlist</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Shop</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <p class="text-gray-400">copy right 2025 universal cart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="add-to-cart.js" defer></script>
+
+</body>
+</html>

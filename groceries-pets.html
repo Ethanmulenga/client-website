@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Universal Cart - Groceries & Pets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between px-6 py-4 bg-white shadow">
+    <h1 class="text-2xl font-bold text-green-600">Universal Cart</h1>
+    <nav class="space-x-4">
+      <a href="index.html" class="hover:text-green-700">Home</a>
+      <a href="#" class="hover:text-green-700">Contact</a>
+      <a href="#" class="hover:text-green-700">About</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-green-100 py-10 px-4 text-center">
+    <h2 class="text-3xl font-bold mb-2 text-green-700">Groceries & Pets</h2>
+    <p class="text-lg text-gray-600">Fresh produce and happy pets — all in one place.</p>
+  </section>
+
+  <!-- Product Grid -->
+  <section class="py-10 px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <!-- Product Card 1 -->
+      <div class="bg-white rounded-lg shadow hover:shadow-lg p-4 transition">
+        <img src="images/grocery1.jpeg" alt="Groceries" class="rounded w-full h-48 object-cover mb-3">
+        <h3 class="font-semibold text-lg">Organic Vegetables</h3>
+        <p class="text-green-600 font-bold">$12</p>
+        <button class="mt-2 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Add to Cart</button>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="bg-white rounded-lg shadow hover:shadow-lg p-4 transition">
+        <img src="images/pet1.jpeg" alt="Pet Food" class="rounded w-full h-48 object-cover mb-3">
+        <h3 class="font-semibold text-lg">Premium Dog Food</h3>
+        <p class="text-green-600 font-bold">$35</p>
+        <button class="mt-2 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Add to Cart</button>
+      </div>
+
+      <!-- Product Card 3 -->
+      <div class="bg-white rounded-lg shadow hover:shadow-lg p-4 transition">
+        <img src="images/pet2.jpeg" alt="Cat Toy" class="rounded w-full h-48 object-cover mb-3">
+        <h3 class="font-semibold text-lg">Interactive Cat Toy</h3>
+        <p class="text-green-600 font-bold">$8</p>
+        <button class="mt-2 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Add to Cart</button>
+      </div>
+
+      <!-- Add more cards as needed -->
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-10 py-6 text-center text-sm text-gray-600">
+    &copy; 2025 Universal Cart. All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Universal Cart - Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-800">Universal Cart</h1>
+      <nav>
+        <ul class="flex space-x-6 text-gray-700">
+          <li><a href="index.html" class="hover:text-blue-600 transition">Home</a></li>
+          <li><a href="products.html" class="hover:text-blue-600 transition">Products</a></li>
+          <li><a href="cart.html" class="hover:text-blue-600 transition"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-semibold mb-6">Products</h2>
+    <div class="mb-6">
+      <input type="text" id="searchInput" placeholder="Search products..." class="w-full p-3 border border-gray-300 rounded" />
+    </div>
+    <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-y-auto max-h-[calc(100vh-200px)]">
+      <!-- Product cards similar to shop now page -->
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col" data-name="HAVIT HV-G92 Gamepad">
+        <img src="images/Fantech GP11 SHOOTER Wired Gaming Controller Gamepad For PC PS3 Xbox.jpeg" alt="HAVIT HV-G92 Gamepad" class="rounded-md mb-4" />
+        <h3 class="text-lg font-semibold mb-2">HAVIT HV-G92 Gamepad</h3>
+        <p class="text-gray-700 mb-4">$120.00</p>
+        <button class="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition add-to-cart-btn"
+                data-product-id="gamepad01"
+                data-product-name="HAVIT HV-G92 Gamepad"
+                data-product-price="120.00">
+          Add to Cart
+        </button>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col" data-name="AK-900 Wired Keyboard">
+        <img src="images/download.jpeg" alt="AK-900 Wired Keyboard" class="rounded-md mb-4" />
+        <h3 class="text-lg font-semibold mb-2">AK-900 Wired Keyboard</h3>
+        <p class="text-gray-700 mb-4">$960.00</p>
+        <button class="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition add-to-cart-btn"
+                data-product-id="keyboard01"
+                data-product-name="AK-900 Wired Keyboard"
+                data-product-price="960.00">
+          Add to Cart
+        </button>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col" data-name="IPS LCD Gaming Monitor">
+        <img src="images/4K smart TV from Tonme Digital signage factory.jpeg" alt="IPS LCD Gaming Monitor" class="rounded-md mb-4" />
+        <h3 class="text-lg font-semibold mb-2">IPS LCD Gaming Monitor</h3>
+        <p class="text-gray-700 mb-4">$370.00</p>
+        <button class="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition add-to-cart-btn"
+                data-product-id="monitor01"
+                data-product-name="IPS LCD Gaming Monitor"
+                data-product-price="370.00">
+          Add to Cart
+        </button>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col" data-name="RGB liquid CPU Cooler">
+        <img src="images/cpu cooler.jpeg" alt="RGB liquid CPU Cooler" class="rounded-md mb-4" />
+        <h3 class="text-lg font-semibold mb-2">RGB liquid CPU Cooler</h3>
+        <p class="text-gray-700 mb-4">$160.00</p>
+        <button class="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition add-to-cart-btn"
+                data-product-id="cooler01"
+                data-product-name="RGB liquid CPU Cooler"
+                data-product-price="160.00">
+          Add to Cart
+        </button>
+      </div>
+      <!-- Add more product cards as needed -->
+    </div>
+    <script>
+      const searchInput = document.getElementById('searchInput');
+      const productsGrid = document.getElementById('productsGrid');
+      const productCards = productsGrid.querySelectorAll('div[data-name]');
+
+      searchInput.addEventListener('input', () => {
+        const filter = searchInput.value.toLowerCase();
+        productCards.forEach(card => {
+          const name = card.getAttribute('data-name');
+          if (name.includes(filter)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    </script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+  <script>
+    // Your web app's Firebase configuration - replace with your own config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      databaseURL: "YOUR_DATABASE_URL",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Add to cart functionality using Firebase Realtime Database
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('div[data-name]');
+        const productName = card.getAttribute('data-name');
+        const productPrice = card.querySelector('p').textContent;
+        const productImage = card.querySelector('img').src;
+
+        // For demo, using a fixed user ID; in real app, use authenticated user ID
+        const userId = 'demoUser';
+
+        const cartRef = database.ref('carts/' + userId);
+
+        cartRef.once('value').then(snapshot => {
+          let cart = snapshot.val() || [];
+          const existingProductIndex = cart.findIndex(item => item.name === productName);
+
+          if (existingProductIndex > -1) {
+            cart[existingProductIndex].quantity += 1;
+          } else {
+            cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
+          }
+
+          cartRef.set(cart).then(() => {
+            alert(`${productName} added to cart.`);
+          }).catch(error => {
+            alert('Error adding to cart: ' + error.message);
+          });
+        });
+      });
+    });
+  </script>
+   </main>
+   <footer class="bg-white shadow mt-12">
+     <div class="container mx-auto px-4 py-4 text-center text-gray-600 text-sm">
+       &copy; 2024 Universal Cart. All rights reserved.
+     </div>
+   </footer>
+</body>
+</html>
