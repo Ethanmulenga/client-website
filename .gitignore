@@ -69,5 +69,8 @@ node_modules/
 firebase-debug.log
 firebase-export.json
 
+# Firebase config file to keep API keys secure
+firebase-config.js
+
 # dataconnect generated files
 .dataconnect
