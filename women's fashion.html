@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Women's Fashion - Universal Cart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              600: "#2563eb",
+              700: "#1d4ed8",
+            },
+            secondary: {
+              500: "#f59e0b",
+              600: "#d97706",
+            },
+            dark: {
+              800: "#1e293b",
+              900: "#0f172a",
+            },
+          },
+          animation: {
+            fadeIn: "fadeIn 0.5s ease-in forwards",
+            bounce: "bounce 2s infinite",
+            pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+          },
+          keyframes: {
+            fadeIn: {
+              "0%": { opacity: 0 },
+              "100%": { opacity: 1 },
+            },
+            bounce: {
+              "0%, 100%": {
+                transform: "translateY(-5%)",
+                animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+              },
+              "50%": {
+                transform: "translateY(0)",
+                animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+              },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <script defer>
+    // Mobile menu toggle
+    function setupMobileMenu() {
+      const menuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    }
+
+    // Categories dropdown toggle
+    function setupCategoriesDropdown() {
+      const dropdownButton = document.getElementById("categories-dropdown-button");
+      const dropdownMenu = document.getElementById("categories-dropdown");
+
+      dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+      });
+
+      // Close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !dropdownButton.contains(e.target) &&
+          !dropdownMenu.contains(e.target)
+        ) {
+          dropdownMenu.classList.add("hidden");
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setupMobileMenu();
+      setupCategoriesDropdown();
+    });
+  </script>
+</head>
+<body class="font-sans antialiased bg-white text-gray-800">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white shadow-md border-b">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <!-- Logo and Categories -->
+        <div class="flex items-center space-x-8">
+          <a href="index.html" class="flex items-center">
+            <img
+              src="icons/Logo.png"
+              alt="Universal Cart Logo"
+              class="h-10 w-auto"
+            />
+            <span
+              class="ml-3 text-2xl font-extrabold text-primary-600 hidden sm:block"
+              >Universal Cart</span
+            >
+          </a>
+
+          <div class="relative hidden lg:block">
+            <button
+              id="categories-dropdown-button"
+              class="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition font-semibold"
+            >
+              <i class="fas fa-bars"></i>
+              <span>Categories</span>
+              <i class="fas fa-chevron-down text-sm ml-1"></i>
+            </button>
+            <div
+              id="categories-dropdown"
+              class="hidden absolute left-0 mt-2 w-72 bg-white rounded-lg shadow-xl z-50 border border-gray-200"
+            >
+              <ul class="py-3">
+                <li>
+                  <a
+                    href="womens-fashion.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Women's Fashion</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="mens-fashion.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Men's Fashion</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="electronics.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Electronics</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="home-lifestyle.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Home & Lifestyle</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="medicine.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Medicine</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="sport-outdoor.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Sport & Outdoor</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="baby-toys.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Baby & Toys</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="groceries-pets.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Groceries & Pets</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="health-beauty.html"
+                    class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded"
+                    >Health & Beauty</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="relative hidden lg:block max-w-md">
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search for products..."
+              class="w-full px-5 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-600"
+            />
+            <ul
+              id="searchResults"
+              class="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto hidden"
+            ></ul>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="space-x-6 hidden md:flex items-center">
+          <a
+            href="#"
+            class="hover:text-primary-600 transition font-semibold"
+            >Account</a
+          >
+          <a
+            href="WISH LIST.html"
+            class="hover:text-primary-600 transition font-semibold"
+            >Wishlist</a
+          >
+          <a
+            href="login.html"
+            class="bg-primary-600 text-white px-5 py-2 rounded-lg hover:bg-primary-700 transition font-semibold"
+            >LOGIN</a
+          >
+        </nav>
+
+        <!-- Cart and Mobile Menu Button -->
+        <div class="flex items-center space-x-6">
+          <div class="relative hidden md:block">
+            <a
+              href="WISH LIST.html"
+              class="text-gray-600 hover:text-primary-600 transition"
+            >
+              <i class="fas fa-heart text-2xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center"
+              ></span>
+            </a>
+          </div>
+
+          <div class="relative">
+            <a
+              href="CART.html"
+              class="text-gray-600 hover:text-primary-600 transition"
+            >
+              <i class="fas fa-shopping-cart text-2xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-primary-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center"
+              ></span>
+            </a>
+          </div>
+
+          <button
+            id="mobile-menu-button"
+            class="md:hidden text-gray-600 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600 rounded-lg p-2"
+          >
+            <i class="fas fa-bars text-3xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search - appears below on mobile -->
+      <div class="mt-4 md:hidden px-4">
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Search for products..."
+            class="w-full py-3 px-5 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+          />
+          <button
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700 transition"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu with Categories -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden mt-4 px-4 pb-4 border-t pt-4 rounded-lg bg-white shadow-lg"
+      >
+        <div class="flex flex-col space-y-4">
+          <div class="border-b pb-4">
+            <h3 class="font-bold text-gray-700 mb-4 text-lg">Categories</h3>
+            <ul class="grid grid-cols-2 gap-4">
+              <li>
+                <a
+                  href="womens-fashion.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Women's Fashion</a
+                >
+              </li>
+              <li>
+                <a
+                  href="mens-fashion.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Men's Fashion</a
+                >
+              </li>
+              <li>
+                <a
+                  href="electronics.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Electronics</a
+                >
+              </li>
+              <li>
+                <a
+                  href="home-lifestyle.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Home & Lifestyle</a
+                >
+              </li>
+              <li>
+                <a
+                  href="medicine.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Medicine</a
+                >
+              </li>
+              <li>
+                <a
+                  href="sport-outdoor.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Sport & Outdoor</a
+                >
+              </li>
+              <li>
+                <a
+                  href="baby-toys.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Baby & Toys</a
+                >
+              </li>
+              <li>
+                <a
+                  href="groceries-pets.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Groceries & Pets</a
+                >
+              </li>
+              <li>
+                <a
+                  href="health-beauty.html"
+                  class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50"
+                  >Health & Beauty</a
+                >
+              </li>
+            </ul>
+          </div>
+          <a
+            href="#"
+            class="hover:text-primary-600 transition font-semibold text-lg"
+            >Account</a
+          >
+          <a
+            href="#"
+            class="hover:text-primary-600 transition font-semibold text-lg"
+            >Wishlist</a
+          >
+          <div class="pt-4">
+            <a
+              href="#"
+              class="block w-full text-center bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition font-semibold"
+              >Sign Up</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section
+    class="py-12 md:py-20 px-4 bg-gradient-to-b from-gray-50 to-white text-center"
+  >
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-primary-600">
+      Women's Fashion
+    </h1>
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-10">
+      Explore the latest trends in women's fashion. From casual wear to
+      elegant dresses, find your perfect style here.
+    </p>
+    <a
+      href="shop now.html"
+      class="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition font-semibold shadow-lg hover:shadow-xl"
+      >Shop Now <i class="fas fa-arrow-right ml-2"></i
+    ></a>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="py-12 px-4 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Featured Women's Fashion</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Product 1 -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
+        >
+          <a href="#">
+            <div class="relative pb-[80%]">
+              <img
+                src="images/womens-fashion/dress1.jpg"
+                alt="Elegant Red Dress"
+                class="absolute h-full w-full object-cover"
+              />
+              <span
+                class="absolute top-2 right-2 bg-secondary-500 text-white text-xs px-2 py-1 rounded"
+                >New</span
+              >
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-800 mb-1">Elegant Red Dress</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(120)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-gray-900">$129.99</span>
+                <span class="text-sm text-gray-500 line-through">$159.99</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 2 -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
+        >
+          <a href="#">
+            <div class="relative pb-[80%]">
+              <img
+                src="images/womens-fashion/blouse1.jpg"
+                alt="Casual White Blouse"
+                class="absolute h-full w-full object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-800 mb-1">Casual White Blouse</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(85)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-gray-900">$49.99</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 3 -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
+        >
+          <a href="#">
+            <div class="relative pb-[80%]">
+              <img
+                src="images/womens-fashion/jacket1.jpg"
+                alt="Stylish Denim Jacket"
+                class="absolute h-full w-full object-cover"
+              />
+              <span
+                class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded"
+                >Sale</span
+              >
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-800 mb-1">Stylish Denim Jacket</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(200)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-gray-900">$79.99</span>
+                <span class="text-sm text-gray-500 line-through">$99.99</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 4 -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
+        >
+          <a href="#">
+            <div class="relative pb-[80%]">
+              <img
+                src="images/womens-fashion/heels1.jpg"
+                alt="Elegant Heels"
+                class="absolute h-full w-full object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-800 mb-1">Elegant Heels</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(95)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-gray-900">$59.99</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="py-12 px-4 bg-primary-600 text-white">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+      <p class="text-lg mb-6">
+        Subscribe to our newsletter for exclusive deals and updates
+      </p>
+      <div class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+        <input
+          type="email"
+          placeholder="Your email address"
+          class="flex-1 py-3 px-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"
+        />
+        <button
+          class="bg-secondary-500 hover:bg-secondary-600 text-white font-bold py-3 px-6 rounded-lg transition"
+        >
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 text-gray-300 py-12 px-4">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- About -->
+        <div>
+          <h3 class="text-white text-lg font-bold mb-4">UniversalCart</h3>
+          <p class="mb-4">
+            Your one-stop shop for all your needs. Quality products at
+            affordable prices with excellent customer service.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"
+              ><i class="fab fa-pinterest"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-white text-lg font-bold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">Home</a></li>
+            <li><a href="#" class="hover:text-white transition">About Us</a></li>
+            <li><a href="#" class="hover:text-white transition">Contact</a></li>
+            <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories -->
+        <div>
+          <h3 class="text-white text-lg font-bold mb-4">Categories</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="womens-fashion.html" class="hover:text-white transition"
+                >Women's Fashion</a
+              >
+            </li>
+            <li>
+              <a href="mens-fashion.html" class="hover:text-white transition"
+                >Men's Fashion</a
+              >
+            </li>
+            <li>
+              <a href="electronics.html" class="hover:text-white transition"
+                >Electronics</a
+              >
+            </li>
+            <li>
+              <a href="home-lifestyle.html" class="hover:text-white transition"
+                >Home & Lifestyle</a
+              >
+            </li>
+            <li>
+              <a href="health-beauty.html" class="hover:text-white transition"
+                >Health & Beauty</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-white text-lg font-bold mb-4">Contact Us</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i
+                class="fas fa-map-marker-alt mt-1 mr-2 text-primary-600"
+              ></i>
+              <span>123 Shopping Street, Retail City, RC 10001</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt mr-2 text-primary-600"></i>
+              <span>+1 (555) 123-4567</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-2 text-primary-600"></i>
+              <span>support@universalcart.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+        <p>&copy; 2025 UniversalCart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

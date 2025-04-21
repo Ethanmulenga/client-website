@@ -129,14 +129,13 @@
 <!-- Add Firebase Configuration -->
 <script>
   const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  
+    apiKey: "AIzaSyCUCTY-wtfBM_vI8DYEHMEBhyfdTrP9GjY",
+  authDomain: "login-6c546.firebaseapp.com",
+  projectId: "login-6c546",
+  storageBucket: "login-6c546.appspot.com",
+  messagingSenderId: "705543890950",
+  appId: "1:705543890950:web:dbf161182061c3ebdd3b87",
+  measurementId: "G-SE9Y1KET8R"
   };
   
   // Initialize Firebase
@@ -166,42 +165,42 @@
 
   <!-- Enhanced Header with mobile responsiveness -->
   <header class="sticky top-0 z-50 bg-white shadow-md border-b">
-    <div class="container mx-auto px-4 py-3">
+    <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo and Categories -->
-        <div class="flex items-center space-x-6">
-          <a href="#" class="flex items-center">
-            <img src="icons/Logo.png" alt="Universal Cart Logo">
-            <span class="ml-2 text-xl font-bold text-primary-600 hidden sm:block"></span>
+        <div class="flex items-center space-x-8">
+          <a href="index.html" class="flex items-center">
+            <img src="icons/Logo.png" alt="Universal Cart Logo" class="h-10 w-auto">
+            <span class="ml-3 text-2xl font-extrabold text-primary-600 hidden sm:block">Universal Cart</span>
           </a>
           
           <div class="relative hidden lg:block">
-            <button id="categories-dropdown-button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition font-medium">
+            <button id="categories-dropdown-button" class="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition font-semibold">
               <i class="fas fa-bars"></i>
               <span>Categories</span>
-              <i class="fas fa-chevron-down text-xs ml-1"></i>
+              <i class="fas fa-chevron-down text-sm ml-1"></i>
             </button>
-            <div id="categories-dropdown" class="hidden absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl z-50 border border-gray-200">
-              <ul class="py-2">
-                <li><a href="womens-fashion.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Women's Fashion</a></li>
-                <li><a href="mens-fashion.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Men's Fashion</a></li>
-                <li><a href="electronics.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Electronics</a></li>
-                <li><a href="home-lifestyle.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Home & Lifestyle</a></li>
-                <li><a href="medicine.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Medicine</a></li>
-                <li><a href="sport-outdoor.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Sport & Outdoor</a></li>
-                <li><a href="baby-toys.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Baby & Toys</a></li>
-                <li><a href="groceries-pets.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Groceries & Pets</a></li>
-                <li><a href="health-beauty.html" class="block px-4 py-2 text-gray-800 hover:bg-primary-50 hover:text-primary-600">Health & Beauty</a></li>
+            <div id="categories-dropdown" class="hidden absolute left-0 mt-2 w-72 bg-white rounded-lg shadow-xl z-50 border border-gray-200">
+              <ul class="py-3">
+                <li><a href="womens-fashion.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Women's Fashion</a></li>
+                <li><a href="mens-fashion.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Men's Fashion</a></li>
+                <li><a href="electronics.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Electronics</a></li>
+                <li><a href="home-lifestyle.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Home & Lifestyle</a></li>
+                <li><a href="medicine.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Medicine</a></li>
+                <li><a href="sport-outdoor.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Sport & Outdoor</a></li>
+                <li><a href="baby-toys.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Baby & Toys</a></li>
+                <li><a href="groceries-pets.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Groceries & Pets</a></li>
+                <li><a href="health-beauty.html" class="block px-5 py-3 text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded">Health & Beauty</a></li>
               </ul>
             </div>
           </div>
         <!-- Search Bar -->
-        <div class="relative hidden lg:block">
+        <div class="relative hidden lg:block max-w-md">
           <input
             id="searchInput"
             type="text"
             placeholder="Search for products..."
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-primary-600"
+            class="w-full px-5 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-600"
           />
           <ul
             id="searchResults"
@@ -282,66 +281,66 @@
         </script>
 
         <!-- Desktop Navigation -->
-        <nav class="space-x-4 hidden md:flex items-center">
-          <a href="#" class="hover:text-primary-600 transition font-medium">Account</a>
-          <a href="WISH LIST.html" class="hover:text-primary-600 transition font-medium">Wishlist</a>
-          <a href="login.html" class="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition font-medium">LOGIN</a>
+        <nav class="space-x-6 hidden md:flex items-center">
+          <a href="#" class="hover:text-primary-600 transition font-semibold">Account</a>
+          <a href="WISH LIST.html" class="hover:text-primary-600 transition font-semibold">Wishlist</a>
+          <a href="login.html" class="bg-primary-600 text-white px-5 py-2 rounded-lg hover:bg-primary-700 transition font-semibold">LOGIN</a>
         </nav>
         
         <!-- Cart and Mobile Menu Button -->
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-6">
           <div class="relative hidden md:block">
             <a href="WISH LIST.html" class="text-gray-600 hover:text-primary-600 transition">
-              <i class="fas fa-heart text-xl"></i>
-              <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"></span>
+              <i class="fas fa-heart text-2xl"></i>
+              <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center"></span>
             </a>
           </div>
           
           <div class="relative">
             <a href="CART.html" class="text-gray-600 hover:text-primary-600 transition">
-              <i class="fas fa-shopping-cart text-xl"></i>
-              <span class="absolute -top-2 -right-2 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"></span>
+              <i class="fas fa-shopping-cart text-2xl"></i>
+              <span class="absolute -top-2 -right-2 bg-primary-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center"></span>
             </a>
           </div>
           
-          <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-primary-600">
-            <i class="fas fa-bars text-2xl"></i>
+          <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600 rounded-lg p-2">
+            <i class="fas fa-bars text-3xl"></i>
           </button>
         </div>
       </div>
       
       <!-- Mobile Search - appears below on mobile -->
-      <div class="mt-3 md:hidden">
+      <div class="mt-4 md:hidden px-4">
         <div class="relative">
           <input type="text" placeholder="Search for products..." 
-                 class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent">
-          <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-1 rounded-full hover:bg-primary-700 transition">
+                 class="w-full py-3 px-5 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent">
+          <button class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700 transition">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
       
       <!-- Mobile Menu with Categories -->
-      <div id="mobile-menu" class="hidden md:hidden mt-3 pb-3 border-t pt-3">
-        <div class="flex flex-col space-y-3">
-          <div class="border-b pb-2">
-            <h3 class="font-bold text-gray-700 mb-2">Categories</h3>
-            <ul class="grid grid-cols-2 gap-2">
-              <li><a href="womens-fashion.html" class="text-blue-700 hover:underline block py-1">Women's Fashion</a></li>
-              <li><a href="mens-fashion.html" class="text-blue-700 hover:underline block py-1">Men's Fashion</a></li>
-              <li><a href="electronics.html" class="text-blue-700 hover:underline block py-1">Electronics</a></li>
-              <li><a href="home-lifestyle.html" class="text-blue-700 hover:underline block py-1">Home & Lifestyle</a></li>
-              <li><a href="medicine.html" class="text-blue-700 hover:underline block py-1">Medicine</a></li>
-              <li><a href="sport-outdoor.html" class="text-blue-700 hover:underline block py-1">Sport & Outdoor</a></li>
-              <li><a href="baby-toys.html" class="text-blue-700 hover:underline block py-1">Baby & Toys</a></li>
-              <li><a href="groceries-pets.html" class="text-blue-700 hover:underline block py-1">Groceries & Pets</a></li>
-              <li><a href="health-beauty.html" class="text-blue-700 hover:underline block py-1">Health & Beauty</a></li>
+      <div id="mobile-menu" class="hidden md:hidden mt-4 px-4 pb-4 border-t pt-4 rounded-lg bg-white shadow-lg">
+        <div class="flex flex-col space-y-4">
+          <div class="border-b pb-4">
+            <h3 class="font-bold text-gray-700 mb-4 text-lg">Categories</h3>
+            <ul class="grid grid-cols-2 gap-4">
+              <li><a href="womens-fashion.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Women's Fashion</a></li>
+              <li><a href="mens-fashion.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Men's Fashion</a></li>
+              <li><a href="electronics.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Electronics</a></li>
+              <li><a href="home-lifestyle.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Home & Lifestyle</a></li>
+              <li><a href="medicine.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Medicine</a></li>
+              <li><a href="sport-outdoor.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Sport & Outdoor</a></li>
+              <li><a href="baby-toys.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Baby & Toys</a></li>
+              <li><a href="groceries-pets.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Groceries & Pets</a></li>
+              <li><a href="health-beauty.html" class="text-blue-700 hover:underline block py-2 px-3 rounded-lg hover:bg-primary-50">Health & Beauty</a></li>
             </ul>
           </div>
-          <a href="#" class="hover:text-primary-600 transition font-medium">Account</a>
-          <a href="#" class="hover:text-primary-600 transition font-medium">Wishlist</a>
-          <div class="pt-2">
-            <a href="#" class="block w-full text-center bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition font-medium">Sign Up</a>
+          <a href="#" class="hover:text-primary-600 transition font-semibold text-lg">Account</a>
+          <a href="#" class="hover:text-primary-600 transition font-semibold text-lg">Wishlist</a>
+          <div class="pt-4">
+            <a href="#" class="block w-full text-center bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition font-semibold">Sign Up</a>
           </div>
         </div>
       </div>
@@ -772,12 +771,6 @@
 
   <!-- Floating Buttons -->
   <div class="fixed bottom-6 right-6 space-y-3 z-40">
-    <button class="bg-gray-800 text-white p-4 rounded-full hover:bg-gray-700 transition shadow-lg hover:shadow-xl">
-      <i class="fas fa-headset text-xl"></i>
-    </button>
-    <button class="bg-primary-600 text-white p-4 rounded-full hover:bg-primary-700 transition shadow-lg hover:shadow-xl animate-bounce">
-      <i class="fas fa-shopping-cart text-xl"></i>
-    </button>
   </div>
   <!-- Add this script section right before the closing </body> tag -->
 <script>
